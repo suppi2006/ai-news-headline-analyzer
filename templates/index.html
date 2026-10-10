@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>AI News Headline Analyzer</title>
+
+    <style>
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #f4f6f8;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            width: 70%;
+            margin: 50px auto;
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        h1 {
+            text-align: center;
+            color: #222;
+        }
+
+        .description {
+            text-align: center;
+            color: #666;
+            margin-bottom: 25px;
+        }
+
+        textarea {
+            width: 100%;
+            height: 100px;
+            padding: 12px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            box-sizing: border-box;
+            resize: vertical;
+        }
+
+        button {
+            display: block;
+            margin: 20px auto;
+            padding: 12px 25px;
+            font-size: 16px;
+            background: #222;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #444;
+        }
+
+        .result {
+            margin-top: 30px;
+            padding: 20px;
+            background: #f8f9fa;
+            border-left: 5px solid #333;
+            border-radius: 8px;
+        }
+
+        .result h2 {
+            margin-top: 0;
+        }
+
+        .headline {
+            background: #eeeeee;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+
+        .note {
+            margin-top: 20px;
+            padding: 15px;
+            background: #fff3cd;
+            border-radius: 8px;
+            color: #664d03;
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+    <div class="container">
+
+        <h1>📰 AI News Headline Analyzer</h1>
+
+        <p class="description">
+            Analyze a news headline for emotional language,
+            sensational wording, and possible clickbait.
+        </p>
+
+        <form method="POST">
+
+            <textarea
+                name="headline"
+                placeholder="Enter a news headline..."
+                required>{{ headline }}</textarea>
+
+            <button type="submit">
+                🔍 Analyze Headline
+            </button>
+
+        </form>
+
+
+        {% if analysis %}
+
+        <div class="result">
+
+            <h2>Analysis Result</h2>
+
+            <div class="headline">
+                <strong>Headline:</strong><br><br>
+                {{ headline }}
+            </div>
+
+            <div>
+                {{ analysis | replace('\n', '<br>') | safe }}
+            </div>
+
+            <div class="note">
+
+                <strong>Important:</strong>
+
+                This analysis examines the language of the headline.
+                It does not determine whether the news is true or false.
+                Always verify the source, author, date, and supporting evidence.
+
+            </div>
+
+        </div>
+
+        {% endif %}
+
+    </div>
+
+</body>
+
+</html>
